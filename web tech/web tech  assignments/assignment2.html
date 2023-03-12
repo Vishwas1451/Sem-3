@@ -1,0 +1,148 @@
+<!--<html>
+    <head>
+        <meta charset = "UTF-8">
+        <title>Registration Form</title>
+        <script src = "https://code.jquery.com/jquery-3.5.1.js"></script>
+        
+        <style>
+            table {
+            margin: 0 auto;
+            font-size: large;
+            border: 1px solid black;
+        }
+  
+        td {
+            background-color: #E4F5D4;
+            border: 1px solid black;
+        }
+  
+        th,
+        td {
+            font-weight: bold;
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+  
+        td {
+            font-weight: lighter;
+        }
+        </style>
+    </head>
+    <body>
+        <h1 align = "center">Registration Form</h1>            
+            <div>
+            <form name = "form" onsubmit="return myfunc()" method = "post">
+
+                <label>Name :&emsp;&emsp;&emsp;</label><input type  = "text" id = "name" name = "name" > <br><br>
+                <label>SRN :&emsp;&emsp;&emsp;&nbsp;</label> <input type = "text" id = "srn" name = "srn" pattern = "PES[1-3]UG(1[89]|2[01])(CS|ME|EE|EC)\d{3}" title = "Sample: PES2UG20CS390"> <br><br>
+                <label>Semester :&emsp;&ensp;</label> <input type = "text" id = "sem" name = "sem" pattern = "[1-8]" title = "Semester must be between 1 and 8" required> <br><br>
+                <label>Section :&emsp;&emsp;&nbsp;</label> <input type = "text" id = "sec" name = "sec" > <br><br>
+                <label>Phone :&emsp;&emsp;&ensp;&nbsp;</label> <input type = "text" id = "phone" name = "phone" required > <br><br>
+                <label>Club :&emsp;&emsp;&emsp;&nbsp;</label> <input type = "text" id = "club" name = "phone"> <br><br>
+
+                <input type = "reset">
+                <input type = "submit" id = "sub">
+
+            </form></div><br><br>
+        
+        <button>Click to add JQuery</button>&nbsp;&nbsp;
+        <button>Click to fade header</button>
+        <canvas id="canvas" width="650" height="200">
+            Canvas is not supported here.
+        </canvas>
+
+        <script src = "emoji.js"></script>
+    </body>
+</html>
+-->
+<!----
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <title>Registration Form</title>
+        <script src = "https://code.jquery.com/jquery-3.5.1.js"></script>
+        <style>
+            body{
+                background:rgb(126, 238, 186);
+            }
+            div{
+                text-align: center;
+            }
+            h1{
+                font-size: 60;
+                color:blue;
+            }
+            label{
+                font-size: 30;
+                color:rgb(235, 76, 14)
+            }
+            #submit,#reset{
+                font-size: 30;
+                color:rgb(128, 45, 167)
+            }
+        </style>
+    </head>
+    <body>
+        <h1 align = "center">Registration Form</h1>            
+            <div>
+            <form name = "form" onsubmit="return myfunc()" method = "post">
+<label for="firstname">First Name:*</label><input type="text" id="firstname" required><br><br>
+<label for="lastname">Last Name:*</label><input type="text" id="lastname" required><br><br>
+                <label>SRN :*</label> <input type = "text" id = "srn" name = "srn" pattern = "PES[1-3]UG(1[89]|2[01])(CS|ME|EE|EC)\d{3}" title = "Sample: PES2UG20CS342" required> <br><br>
+                <label>Semester :*</label> <input type = "text" id = "sem" name = "sem" pattern = "[1-8]" title = "Semester must be between 1 and 8" required> <br><br>
+                <label>Section :*</label> <input type = "text" id = "sec" name = "sec" required> <br><br>
+                <label>Club :</label> <input type = "text" id = "club" name = "club"> <br><br>
+                <input type = "Reset" id="reset">
+                <input type = "Submit" id = "submit">
+            </form></div><br><br>
+        <canvas id="canvas" width="650" height="200">
+            Canvas is not supported
+        </canvas>
+        <script src = "emoji.js"></script>
+    </body>
+</html>
+-->
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <title>TABLE</title>
+<link rel="stylesheet" type="text/css" href="table.css">
+        <script src = "https://code.jquery.com/jquery-3.5.0.js"></script>
+    </head>
+    <body>
+        <h1 align = "center">TABLE:</h1>          
+            <div style="background:#2E9AFE;width:100%;"> This will get faded....please wait and watch!!! </div>
+<button id="btn1">Click to fade </button>
+<br>
+<br>
+<table class="some_style"border="5" bordercolor="#17202A" bgcolor="#9B59B6" width="50%" cellspacing="2" cellpadding="3">
+<tr>
+<th rowspan="2"> SL NO. </th>
+<th rowspan="2"> SECTION </th>
+<th colspan="2"> NUMBER OF STUDENTS: </th>
+<th rowspan="2"> TOTAL: </th>
+</tr>
+<tr>
+<th> CSE </th>
+<th> ECE </th>
+</tr>
+<tr>
+<td class="b1"> 1 </td>
+<td class="b2"> B </td>
+<td class="b3"> 45 </td>
+<td class="b4"> 34 </td>
+<td class="b5"> 89 </td>
+</tr>
+<tr>
+<td class="b6"> 2 </td>
+<td class="b7"> C </td>
+<td class="b8"> 36 </td>
+<td class="b9"> 67 </td>
+<td class="b10"> 40 </td>
+</tr>
+</table>		
+<button id="btn2">Fading odd rows off the table</button>
+        <script src = "emoji.js"></script>
+    </body>
+</html>

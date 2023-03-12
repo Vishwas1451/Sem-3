@@ -1,0 +1,28 @@
+table:hover
+{
+   text-align:center;
+   font-size:300%;
+}
+table
+{
+   text-align:center;
+   
+}
+.b2:hover{
+    font-size:400%;
+}
+div{
+    font-size:30;
+    width:20%;
+}
+body{
+    background:rgb(126, 238, 186);
+}
+ 
+table.some_style td {
+background-color: rgb(216, 162, 45);
+}
+ 
+table.some_style td:hover {
+background-color: rgb(10, 100, 122);
+}
