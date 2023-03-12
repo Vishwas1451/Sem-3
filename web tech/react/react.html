@@ -1,0 +1,322 @@
+<html>
+    <head>
+        <title>React !</title>
+        <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+        <style>
+            .bigblue {
+                color: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Hi</h2>
+        <div id="container"></div>
+        <div id="cont"></div>
+        <div id="hello-example"></div>
+        <br><br>
+        <div id="buttonR"></div>
+        <div id="avg"></div>
+        <div id="lightning"></div>
+        <div id="stateless"></div>
+        <div id="cust"></div>
+        <div id="num"></div>
+        <div id="namel"></div>
+        <div id="count"></div>
+        <div id="mydiv"></div>
+        <div id="form"></div>
+        <div id="reser"></div>
+        <div id="first"></div>
+        <script type="text/babel">
+            var dest = document.getElementById("container");
+            var dest2 = document.getElementById("cont");
+            ReactDOM.render(<h1>Welcome to REACT JS</h1>, dest); //JSX
+            ReactDOM.render(React.createElement("h2", null, "REACT"), dest2); //JavaScript
+            
+            class HelloMessage extends React.Component {
+                render() {
+                    return (
+                        <div>
+                            Hello {this.props.name}
+                        </div>
+                    );
+                }
+            }
+            ReactDOM.render(<HelloMessage name="Batman" />, document.getElementById('hello-example'));
+
+            class Buttonify extends React.Component {
+                render() {
+                    return (
+                        <div>
+                            <button type = {this.props.behaviour}> {this.props.children} </button>
+                        </div>
+                    );
+                }
+            }
+            ReactDOM.render(<div><Buttonify behaviour='submit'>SEND DATA</Buttonify></div> , document.getElementById('buttonR'));
+
+            class Avengers extends React.Component {
+                render() {
+                    return (
+                        <div>
+                            <h1 style={{color:"red"}}>Hello {this.props.name}</h1>
+                            <p className="bigblue">{this.props.children}</p>
+                        </div>
+                    );
+                }
+            }
+            ReactDOM.render(<div><Avengers name="Ironman">Where is Jarvis?</Avengers> <Avengers name="Thor">Give me your hammer</Avengers></div>, document.getElementById('avg'));
+
+            var dest=document.querySelector("#lightning");
+            class LightningCounter extends React.Component
+            {
+                constructor(props){
+                    super(props);
+                    this.state = {strikes:0};
+                    this.timerTick = this.timerTick.bind(this);
+                }
+                timerTick(){
+                    this.setState((prevState)=>{
+                        return {strikes: prevState.strikes+1}
+                    });
+                }
+                componentDidMount(){
+                    this.timer = setInterval(this.timerTick, 1000);
+                    console.log("Component is loaded");
+                }
+                componentDidUpdate(prevProps, prevState){
+                    console.log("Component updated from: "+prevState.strikes);
+                    if (this.state.strikes == 5) {
+                        ReactDOM.unmountComponentAtNode(dest);
+                    }
+                }
+                componentWillUnmount(){
+                    console.log("Component is about to be unmounted");
+                    clearInterval(this.timer);
+                }
+                render(){
+                    console.log("Class component has just loaded");
+                    return(
+                        <h1>{this.state.strikes}</h1>
+                    );
+                }
+            }
+            class LightningCounterDisplay extends React.Component
+            {
+                render()
+                {
+                    var divStyle={
+                        width:250,
+                        textAlign: "center",
+                        backgroundColor: "black",
+                        padding:40,
+                        color: "indigo"
+                    };
+                    return(
+                        <div style={divStyle}><LightningCounter/></div>
+                    );
+                }
+            }
+            //ReactDOM.render(<LightningCounterDisplay/>, dest);
+
+            function HelloWorld(props){
+                return <p>Hello World {props.name}</p> 
+            }
+            ReactDOM.render(<HelloWorld name="ABC"/>, document.querySelector("#stateless"));
+
+            var cust=document.querySelector("#cust");
+            var colors = ["red", "green", "blue", "yellow", "orange"];
+            class CustomRef extends React.Component{
+                constructor(props){
+                    super(props);
+                    this.myText = null;
+                    this.setTextRef = (e1) => {this.myText = e1} //react.createRef()
+                    this.changeText = (event) => {
+                        var i = Math.floor(Math.random()*5);
+                        this.myText.innerHTML = colors[i];
+                        this.myText.style.color = colors[i];
+                    }
+                }
+                render(){
+                    return <div> 
+                                <h2 ref={this.setTextRef}>This is text</h2>  
+                                <input type="button" value="Change text" onClick={this.changeText} />
+                            </div>
+                }
+            }
+            ReactDOM.render(<CustomRef/>, cust);
+
+            function NumberList(props){
+                const num = props.num;
+                const listItems = num.map((num) => <li key={num.toString()}>{num}</li>);
+                return (<ul> {listItems} </ul>);
+            }
+            const num = [1, 2, 3, 4, 5];
+            ReactDOM.render(<NumberList num={num}/>, document.getElementById("num"));
+
+            var namel=document.querySelector("#namel");
+            function NameList(props){
+                const names = props.names;
+                const listitems = names.map((name, index)=><li key={index}>{name}</li>);
+                return(<ul>{listitems}</ul>)
+            }
+            const names = ["Batman", "Ironman", "Thor"];
+            ReactDOM.render(<NameList names={names}/>, namel);
+
+            var count = document.querySelector("#count");
+            class LightCounter extends React.Component {
+                constructor(props) {
+                    super(props);
+                    this.state = { count: 0 };
+                    this.increment = this.increment.bind(this)
+                }
+                increment(){
+                    this.setState({
+                        count: this.state.count + 1
+                    });
+                };
+                componentDidMount() {
+                    console.log("Component is loaded");
+                }
+                componentDidUpdate(prevProps, prevState) {
+                    console.log("Component updated from: " + prevState.count);
+                    if (this.state.count == 5) {
+                        ReactDOM.unmountComponentAtNode(count);
+                    }
+                }
+                componentWillUnmount() {
+                    console.log("Component is about to be unmounted");
+                    //clearInterval(this.timer);
+                }
+                render() {
+                    console.log("Class component has just loaded");
+                    return (
+                        <div>
+                            <h1>{this.state.count}</h1>
+                            <button onClick = {this.increment}>+</button>
+                        </div>
+                    );
+                }
+            }
+            class Counter extends React.Component {
+                render() {
+                    var divStyle = {
+                        width: 250,
+                        textAlign: "center",
+                        backgroundColor: "yellow",
+                        padding: 40,
+                        color: "#999"
+                    };
+                    return (
+                        <div style={divStyle}><LightCounter /></div>
+                    );
+                }
+            }
+            ReactDOM.render(<Counter/>, count);
+
+            //TO DO innerHTML
+            var mydiv = document.querySelector("#mydiv");
+            var txt;
+            class MydivK extends React.Component{
+                constructor(props){
+                    super(props);
+                    this.setRef = (e1) => { this.myRef = e1};
+                    this.ShowChar = (event) => {
+                        //console.log(event.charCode|event.KeyCode);
+                        if(event.ShiftKey)
+                            txt = "<span style = \"color:red\">" +event.key+ "</span>";
+                        else
+                            txt = event.key;
+                        this.myRef.innerHTML += txt;
+                        //console.log(event);
+                        event.persist();
+                        ev = event;
+                    }
+                }
+                render(){
+                    return(
+                        <div>
+                            <input type="text" onKeyPress={this.ShowChar}/>
+                            <h1>{this.setRef}</h1>
+                        </div>
+                    );
+                }
+            }
+            ReactDOM.render(<MydivK/>, mydiv);
+
+            var form = document.querySelector("#form");
+            class NameForm extends React.Component{
+                constructor(props){
+                    super(props);
+                    this.state = {value:"",value2:""};
+                    this.handleChange = this.handleChange.bind(this);
+                    this.handleChangeTwo = this.handleChangeTwo.bind(this);
+                    this.handleSubmit = this.handleSubmit.bind(this);
+                    
+                }
+                handleChange(event){
+                    this.setState({value:event.target.value});
+                    
+                }
+                handleChangeTwo(event){
+                    this.setState({value2:event.target.value});
+                }
+                handleSubmit(e){
+                    alert("Name submitted is "+this.state.value+this.state.value2);
+                   
+                    e.preventDefault();
+                    <h1>{this.state.value}</h1>
+                }
+                render(){
+                    return(
+                        <form onSubmit={this.handleSubmit}>
+                            <label>
+                                Name:
+                                <input type="text" value={this.state.value} onChange={this.handleChange} />
+                                <input type="text" value={this.state.value2} onChange={this.handleChangeTwo} />
+                            </label>
+                            <input type="submit" value="Submit" />
+                            
+                        </form>
+                    )
+                }
+            }
+            ReactDOM.render(<NameForm/>, form);
+
+            var reser=document.querySelector("#reser");
+            class Reservation extends React.Component{
+                constructor(props){
+                    super(props);
+                    this.state = {isgoing:true, guest:2};
+                    this.handleInputChange = this.handleInputChange.bind(this);
+                }
+                handleInputChange(event){
+                    const target = event.target;
+                    const value = target.type === "checkbox"?target.checked:target.value;
+                    const name = target.name;
+                    console.log(event.target.name);
+                    this.setState({
+                        [name]:value
+                    });
+                }
+                render(){
+                    return(
+                        <form>
+                            <label>
+                                Is Going:
+                                <input type="checkbox" name="isgoing" checked = {this.state.isgoing} onChange={this.handleInputChange} />
+                            </label>
+                            <br/><br/>
+                            <label>
+                                Guests:
+                                <input type="number" min="0" name="guest" value={this.state.guest} onChange = {this.handleInputChange} />
+                            </label>
+                        </form>
+                    );
+                }
+            }
+            ReactDOM.render(<Reservation/>, reser);
+        </script>
+    </body>
+</html>

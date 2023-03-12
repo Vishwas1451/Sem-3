@@ -1,0 +1,180 @@
+<html>
+    <head>
+        <title>React !!!</title>
+        <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+        <style>
+            .bigblue {
+                color: blue;
+            }
+        </style>
+    </head>
+<body>
+    <h3>hii</h3>
+    <div id="first1"></div>
+    <div id="second"></div>
+    <div id="hello-example"></div>
+    <br><br>
+    <div id="buttonR"></div>
+    <br><br>
+    <div id="button"></div>
+    <!-- <hr> -->
+    <div id="avg"></div>
+    <div id="light"></div>
+    <div id="stateless"></div>
+    <div id="cust"></div>
+    <div id="num"></div>
+    <div id="num1"></div>
+    <div id="namel"></div>
+    <div id="count"></div>
+    <div id="mydiv"></div>
+    <div id="form"></div>
+    <div id="reser"></div>
+    <div id="first"></div>
+    <script type=text/babel>
+
+    var dest1 = document.getElementById('first1');
+    ReactDOM.render(<h2>welcome to react JS</h2>, dest1);//JSX
+    //ReactDOM.render(React.createElement("h2",null,"welcome to react JS"), dest1);//JAVASCRIPT
+    class Demo extends React.Component {
+        render(){
+            return(<div>
+                <h1>
+                welcome to react
+                </h1>
+                </div>
+            );
+        }
+    }
+    ReactDOM.render(<Demo />,document.getElementById('second'));
+
+    class HelloMessage extends React.Component {
+        render() {
+             return (<div style={{"color":"blue"}}>
+                    <h1><u>
+                         Hello yashas
+                        </u>
+                    </h1>
+                    </div>
+                );
+            }
+    }
+    ReactDOM.render(<HelloMessage />, document.getElementById('hello-example'));
+
+    class Batman extends React.Component{
+        render(){
+            return(
+                <div>
+                    Hello,{this.props.children}
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<Batman>Batman</Batman>,document.getElementById('buttonR'));
+ 
+    class SendButton extends React.Component{
+        render(){
+            return(
+                <div>
+                <button type={this.props.behavior}>{this.props.children}</button>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<SendButton behavior='submit'>send data</SendButton>,document.getElementById('button'));
+
+    class Avengers extends React.Component{
+        render(){
+            return(
+                <div>
+                    <h3 style={{color:'red'}}>Hello {this.props.name}</h3>
+                    <p className='bigblue'>{this.props.children}</p>
+                </div>
+                
+            );
+        }
+    }
+    ReactDOM.render(<div><Avengers name='Captain America'>Where is your Shield??</Avengers> <Avengers name='Thor'>Give me your hammer</Avengers></div>, document.getElementById('avg'));
+
+   var dest4=document.querySelector("#light");
+   var color=["red","blue","green","yellow","black"];
+    class CostomRefOne extends React.Component{
+        constructor(props){
+            super(props);
+            this.myText=null;
+            this.setTextRef=(e1) => {this.myText = e1}//React.CreateRef()
+            this.changeEvent=() => {
+                var i = Math.floor(Math.random()*5);
+                this.myText.innerHTML=color[i];
+                this.myText.style.color=color[i];
+            }
+            
+        }
+        render(){
+            return (<div>
+                <h1 ref={this.setTextRef}>this text</h1>
+                <input type="button" value="click" onClick={this.changeEvent} />
+                </div>
+            );
+        }
+    }
+    ReactDOM.render(<CostomRefOne/>,dest4);
+
+
+    var cust=document.querySelector("#cust");
+            var colors = ["red", "green", "blue", "yellow", "orange"];
+            class CustomRef extends React.Component{
+                constructor(props){
+                    super(props);
+                    this.myText = null;
+                    this.setTextRef = (e1) => {this.myText = e1} //react.createRef()
+                    this.changeText = () => {
+                        var i = Math.floor(Math.random()*5);
+                        this.myText.innerHTML = colors[i];
+                        this.myText.style.color = colors[i];
+                    }
+                }
+                render(){
+                    return <div> 
+                                <h2 ref={this.setTextRef}>This is text</h2>  
+                                <input type="button" value="Change text" onClick={this.changeText} />
+                            </div>
+                }
+            }
+            ReactDOM.render(<CustomRef/>, cust);
+
+   function HelloWorld(props) {
+       return(<h4>Hello World,{props.name}</h4>);
+   }
+   ReactDOM.render(<HelloWorld name="this is vishwas"/>,document.getElementById('stateless'));
+
+   function MarvelNames(props){
+       //const name=props.names;
+       const listitems=props.names.map((name)=><li>{name}</li>);//name.map((name)=><li>{name}</li>);
+       return(<ul>{listitems}</ul>);
+
+   }
+   const names=["Iron man","Thor","Captain Amaerica","black widow"];
+   ReactDOM.render(<MarvelNames names={names}/>,document.getElementById('num'));
+   
+//    class MarvelNamesTwo extends React.Component{
+//        constructor(props){
+//           super(props);
+//           this.myText=null;
+//           this.setMyText=(e1)=>{this.mytext=e1};
+//           //const n =props.name;
+//           this.changeText=props.name.map((name)=><li>{name}</li>);
+//        }
+      
+//        return(<ul>{listitems1}</li>);
+
+//    }
+//    const names1=['one','two','three','four','five'];
+//    ReactDOM.render(<MarvelNamesTwo name={names1} />,document.getElementById('num1'));
+
+
+
+</script>
+</body>
+</html>
